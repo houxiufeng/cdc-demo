@@ -26,7 +26,7 @@ public class DemoApplication {
 		props.setProperty("name", "engine");
 		props.setProperty("connector.class", "io.debezium.connector.mysql.MySqlConnector");
 		props.setProperty("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore");
-        props.setProperty("offset.storage.file.filename", "/tmp/offsets.dat");
+        props.setProperty("offset.storage.file.filename", "/Users/houxiufeng/test/offsets.dat");
 		props.setProperty("offset.flush.interval.ms", "1000");
 		/* begin connector properties */
 		props.setProperty("database.hostname", "192.168.123.184");
@@ -35,9 +35,10 @@ public class DemoApplication {
 		props.setProperty("database.password", "~Yagamihxf0");
 		props.setProperty("database.include.list", "test_db");
 		props.setProperty("database.server.id", "10181");
+		props.setProperty("include.schema.changes", "false");
 		props.setProperty("database.server.name", "fitz-engine");
 		props.setProperty("database.history", "io.debezium.relational.history.FileDatabaseHistory");
-		props.setProperty("database.history.file.filename", "/tmp/dbhistory.dat");
+		props.setProperty("database.history.file.filename", "/Users/houxiufeng/test/dbhistory.dat");
 
 		// Create the engine with this configuration ...
 		try (DebeziumEngine<ChangeEvent<String, String>> engine = DebeziumEngine.create(Json.class)
