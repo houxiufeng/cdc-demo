@@ -39,30 +39,21 @@ public class DemoApplication {
 		props.setProperty("database.history", "io.debezium.relational.history.FileDatabaseHistory");
 		props.setProperty("database.history.file.filename", "/tmp/dbhistory.dat");
 
-//		// Create the engine with this configuration ...
-//		try (DebeziumEngine<ChangeEvent<String, String>> engine = DebeziumEngine.create(Json.class)
-//				.using(props)
-//				.notifying(record -> {
-//					System.out.println(record.value());
-//				}).build()
-//		) {
-//			// Run the engine asynchronously ...
-//			ExecutorService executor = Executors.newSingleThreadExecutor();
-//			executor.execute(engine);
-//
-//			// Do something else or wait for a signal or an event
-//		}
-//		// Engine is stopped when the main code is finished
-//		System.out.println("here is end");
+		// Create the engine with this configuration ...
+		try (DebeziumEngine<ChangeEvent<String, String>> engine = DebeziumEngine.create(Json.class)
+				.using(props)
+				.notifying(record -> {
+					System.out.println(record.value());
+				}).build()
+		) {
+			// Run the engine asynchronously ...
+			ExecutorService executor = Executors.newSingleThreadExecutor();
+			executor.execute(engine);
 
-		DebeziumEngine<ChangeEvent<String, String>> engine = DebeziumEngine.create(Json.class)
-				.using(props).notifying(record -> System.out.println(record.value())).build();
-
-		Executors.newSingleThreadExecutor().execute(engine);
-
-		// Run the engine asynchronously ...
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.execute(engine);
+			// Do something else or wait for a signal or an event
+		}
+		// Engine is stopped when the main code is finished
+		System.out.println("here is end");
 
 	}
 
